@@ -1,12 +1,14 @@
+//import { Sequelize } from "sequelize";
+
 import { Sequelize } from "sequelize";
 
 const database: string  = process.env.DATABASE || "test";
-const dbUser: string    = process.env.USER || "postgres";
-const password: string  = process.env.PASSWORD || "647855aassdd";
+const dbUser: string    = process.env.USER || "root";
+const password: string  = process.env.PASSWORD || "123456";
 
-const db = new Sequelize(database, dbUser, password, {
+export const db = new Sequelize(database, dbUser, password, {
   host: "localhost",
-  dialect: "postgres",
+  dialect: "mysql", //postgres
   // logging: false
 });
 

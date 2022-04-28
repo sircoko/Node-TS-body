@@ -1,9 +1,21 @@
-import { DataTypes } from "sequelize";
-import db from "../../db/connections";
+import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from 'sequelize';
+import db from '../../db/connections';
 
-const User = db.define("users", {
+
+export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+  declare id: CreationOptional<Number>;
+  declare name: string;
+  declare email: string;
+  declare status: boolean;
+  declare password: string;
+  declare role: string;
+  declare createdAt: CreationOptional<Date>;
+  declare updatedAt: CreationOptional<Date>;
+}
+
+User.init({
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
@@ -35,7 +47,16 @@ const User = db.define("users", {
   
   createdAt: DataTypes.DATE,
   updatedAt: DataTypes.DATE,
-  
-});
+  },
+  {
+    tableName: 'users',
+    sequelize: db
+  }
+);
+
+
+(async () => {
+  await db.sync();
+})();
 
 export default User;

@@ -12,7 +12,9 @@ export const tokenSign = async (id:string, role:string) => {
 
 export const verifyToken = async (token: any) => {
     try {
-        return jwt.verify(token, process.env.JWT_SECRET || "pass")
+        const res = jwt.verify(token, process.env.JWT_SECRET || "pass")
+        console.log(res)
+        return res
     } catch (error) {
         return undefined
     }

@@ -1,7 +1,14 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, InferAttributes, InferCreationAttributes, Model, CreationOptional } from 'sequelize';
 import db from "../../db/connections";
 
-const Product = db.define("product", {
+
+export class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Product>> {
+  declare id: CreationOptional<Number>;
+  declare title: string;
+  declare price: number;
+  }
+
+  Product.init({
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -13,6 +20,13 @@ const Product = db.define("product", {
     type: DataTypes.DOUBLE,
     allowNull: false,
   },
-});
+  },{
+    tableName: 'products',
+    sequelize: db
+  });
+
+(async () => {
+  await db.sync();
+})();
 
 export default Product;
