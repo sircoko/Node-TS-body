@@ -25,8 +25,8 @@ export class Product extends Model<InferAttributes<Product>, InferCreationAttrib
     sequelize: db
   });
 
-(async () => {
-  await db.sync();
-})();
+// (async () => {
+//   await db.sync();
+// })();
 
 export default Product;

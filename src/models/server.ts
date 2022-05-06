@@ -20,9 +20,9 @@ class Server {
 
   async dbConnection() {
     try {
-      await sequelize.authenticate();
+      //await sequelize.authenticate();
       // await sequelize.sync();
-      // await sequelize.sync({ force: true });
+      await sequelize.sync({ force: true });
 
       console.log("Database online");
 

@@ -55,8 +55,8 @@ User.init({
 );
 
 
-(async () => {
-  await db.sync();
-})();
+// (async () => {
+//   await db.sync();
+// })();
 
 export default User;
